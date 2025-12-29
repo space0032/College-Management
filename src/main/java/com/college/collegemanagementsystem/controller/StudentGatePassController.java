@@ -43,7 +43,14 @@ public class StudentGatePassController {
             User user = userService.findByUsername(auth.getName()).orElseThrow();
             if (user.getStudent() == null) {
                 redirectAttributes.addFlashAttribute("errorMessage",
-                        "You must be a hostel student to apply for gate pass");
+                        "You must be a student to apply for gate pass");
+                return "redirect:/student/dashboard";
+            }
+
+            // Check if student is a hostelite
+            if (!user.getStudent().getIsHostelite() || user.getStudent().getHostel() == null) {
+                redirectAttributes.addFlashAttribute("errorMessage",
+                        "Only hostel residents can apply for gate pass. Please contact admin if you should have hostel access.");
                 return "redirect:/student/dashboard";
             }
 

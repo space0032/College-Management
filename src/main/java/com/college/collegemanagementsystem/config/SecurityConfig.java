@@ -63,6 +63,9 @@ public class SecurityConfig {
                         .requestMatchers("/students/**", "/departments/**", "/courses/**", "/hostels/**")
                         .hasAnyRole("STUDENT_SECTION", "WARDEN")
 
+                        // User management - Admin only
+                        .requestMatchers("/users/**").hasRole("STUDENT_SECTION")
+
                         // API endpoints
                         .requestMatchers("/api/**").authenticated()
 
