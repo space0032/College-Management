@@ -12,26 +12,33 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "departments")
-public class Department {
+@Table(name = "hostels")
+public class Hostel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Department name is required")
-    @Size(min = 2, max = 100, message = "Department name must be between 2 and 100 characters")
+    @NotBlank(message = "Hostel name is required")
+    @Size(min = 2, max = 100, message = "Hostel name must be between 2 and 100 characters")
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Size(max = 500, message = "Description cannot exceed 500 characters")
-    @Column(length = 500)
-    private String description;
+    @NotNull(message = "Capacity is required")
+    @Min(value = 1, message = "Capacity must be at least 1")
+    @Column(nullable = false)
+    private Integer capacity;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    @Size(max = 200, message = "Address cannot exceed 200 characters")
+    @Column(length = 200)
+    private String address;
+
+    @OneToOne
+    @JoinColumn(name = "warden_id")
+    private User warden;
+
+    @OneToMany(mappedBy = "hostel")
     private List<Student> students = new ArrayList<>();
-
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
-    private List<Course> courses = new ArrayList<>();
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

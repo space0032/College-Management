@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/navbar :: head}">
+    <title>Home - College Management System</title>
+</head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar(activePage='home')}"></nav>
+
+    <div class="container mt-4">
+        <!-- Hero Section -->
+        <div class="jumbotron bg-light p-5 rounded mb-4">
+            <h1 class="display-4">
+                <i class="bi bi-mortarboard-fill text-primary"></i>
+                College Management System
+            </h1>
+            <p class="lead">Welcome to the College Management System. Manage students, departments, and courses
+                efficiently.</p>
+            <hr class="my-4">
+            <p>Click on the cards below to navigate to different sections of the system.</p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body text-center">
+                        <i class="bi bi-people-fill" style="font-size: 3rem;"></i>
+                        <h5 class="card-title mt-2">Students</h5>
+                        <p class="display-4" th:text="${studentCount}">0</p>
+                        <a href="/students" class="btn btn-light">Manage Students</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body text-center">
+                        <i class="bi bi-building-fill" style="font-size: 3rem;"></i>
+                        <h5 class="card-title mt-2">Departments</h5>
+                        <p class="display-4" th:text="${departmentCount}">0</p>
+                        <a href="/departments" class="btn btn-light">Manage Departments</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-body text-center">
+                        <i class="bi bi-book-fill" style="font-size: 3rem;"></i>
+                        <h5 class="card-title mt-2">Courses</h5>
+                        <p class="display-4" th:text="${courseCount}">0</p>
+                        <a href="/courses" class="btn btn-light">Manage Courses</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0"><i class="bi bi-lightning-fill"></i> Quick Actions</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <a href="/students/new" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-person-plus"></i> Add New Student
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <a href="/departments/new" class="btn btn-outline-success w-100">
+                            <i class="bi bi-building-add"></i> Add New Department
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <a href="/courses/new" class="btn btn-outline-info w-100">
+                            <i class="bi bi-book-half"></i> Add New Course
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h3><i class="bi bi-gear-fill"></i> System Features</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        <strong>REST API & Web Interface:</strong> Both REST endpoints and user-friendly web UI
+                        available
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        <strong>H2 & MySQL Support:</strong> Development mode uses H2, production mode uses MySQL
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        <strong>Input Validation:</strong> Comprehensive validation with user-friendly error messages
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        <strong>Entity Relationships:</strong> Students and courses linked to departments
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/navbar :: scripts}"></div>
+</body>
+
+</html>
